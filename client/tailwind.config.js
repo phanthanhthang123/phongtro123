@@ -11,6 +11,12 @@ module.exports = {
         secondary1: "#1266dd",
         secondary2: "#f73859",
       },
+      maxWidth : {
+        '600' :'600px',
+      },
+      cursor : {
+        pointer : 'pointer'
+      }
     },
   },
   plugins: [],
