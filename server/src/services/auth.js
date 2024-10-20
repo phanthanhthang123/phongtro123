@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
 
 require('dotenv').config();
 
+//ma hoa pass
 const hashPassword = password => bcrypt.hashSync(password,bcrypt.genSaltSync(12));
 
 export const registerService = ({phone,password,name})=> new Promise(async (resolve, reject) => {

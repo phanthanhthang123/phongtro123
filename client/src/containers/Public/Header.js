@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import logo from "../../assets/img/logo-phongtro.svg";
 import { Button } from "../../components";
 import icons from "../../ultils/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { path } from "../../ultils/constant";
 
 const { CiCirclePlus } = icons;
@@ -10,22 +10,28 @@ const { CiCirclePlus } = icons;
 const Header = () => {
   const navigate = useNavigate();
 
-  const goLogin = useCallback(() => {
-    navigate(path.LOGIN);
-  }, []);
+  // const goLogin = useCallback((flag) => {
+  //   navigate(path.LOGIN,{state: {flag}});
+  // }, []);
 
-  const goRegister = useCallback(() => {
-    navigate(`${path.REGISTER}`);
-  });
+  const goLogin = useCallback(()=>{
+    navigate(path.LOGIN);
+  })
+  const goRegister = useCallback(()=>{
+    navigate(path.REGISTER);
+  })
+
 
   return (
     <div className="w-1100 ">
         <div className="w-full items-center flex justify-between">
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-[240px] h-[70px] object-container"
-          />
+          <Link to={path.HOME}>
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-[240px] h-[70px] object-container"
+            />
+          </Link>
           <div className="flex items-center gab-1">
             <small>Phongtro123.com xin chào</small>
             <Button

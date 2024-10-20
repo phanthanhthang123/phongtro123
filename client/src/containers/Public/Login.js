@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React from "react";
 import { InputFrom, Button } from "../../components";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -18,10 +19,10 @@ const Login = () => {
       </div>
       <div className="flex justify-between mt-7 text-base font-medium">
         <small className="text-[blue] hover:text-[orange] cursor-pointer">Bạn quên mật khẩu</small>
-        <small className="text-[blue] hover:text-[orange] cursor-pointer">Tạo tài khoản mới</small>
+        <Link to="/register" className="text-[blue] hover:text-[orange] cursor-pointer">Tạo tài khoản mới</Link>
       </div>
     </div>
   );
 };
 
-export default memo(Login);
+export default Login;
