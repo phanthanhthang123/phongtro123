@@ -21,7 +21,7 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      attributeId: {
+      attributesId: {
         type: Sequelize.STRING
       },
       categoryCode: {

@@ -14,7 +14,7 @@ const commonConfig = {
 const authConfig = {
   ...commonConfig,
   key: 'auth',
-  whitelist: ['isLoggedIn', 'token',] //white list : chon ra cac state nao cua reducer duoc luu o localstore age
+  whitelist: ['isLoggedIn', 'token'] //white list : chon ra cac state nao cua reducer duoc luu o localstore age
 };
 
 const rootReducer = combineReducers({

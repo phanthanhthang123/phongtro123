@@ -18,6 +18,11 @@ const sequelize = new Sequelize('phongtro123', 'root', null, {
   logging: false
 });
 
+// const sequelize = new Sequelize('phongtro123', 'thang', 'thang01010610', {
+//   host: 'localhost',
+//   dialect: 'postgres' /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+// });
+
 const connectDatabase = async ()=>{
     try {
         await sequelize.authenticate();
