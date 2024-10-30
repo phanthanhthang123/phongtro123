@@ -3,15 +3,21 @@ import { InputFrom, Button } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, msg,update } = useSelector((state) => state.auth);
   useEffect(() => {
     isLoggedIn && navigate("/");
   }, [isLoggedIn]);
+  
+  useEffect(()=>{
+    msg && Swal.fire("Opps !",msg,'error');
+  },[msg, update]);
+
   const [invalidFeilds, setInvalidFeilds] = useState([]); //chua cac truong khong hop le
   const validate = (payload) => {
     let invalids = 0;
@@ -54,6 +60,8 @@ const Login = () => {
             invalids++;
           }
           break;
+        default:
+          break;
       }
     });
     return invalids;
@@ -84,7 +92,7 @@ const Login = () => {
           label={"SỐ ĐIỆN THOẠI"}
           value={payload.phone}
           setValue={setPayload}
-          type="phone"
+          keyPayload={"phone"}
         />
         <InputFrom
           invalidFeilds={invalidFeilds}
@@ -92,7 +100,8 @@ const Login = () => {
           label={"MẬT KHẨU"}
           value={payload.password}
           setValue={setPayload}
-          type="password"
+          type={"password"}
+          keyPayload={"password"}
         />
         <Button
           text="Đăng nhập"

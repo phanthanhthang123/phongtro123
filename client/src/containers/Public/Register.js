@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { InputFrom, Button } from "../../components";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
 import { useDispatch,useSelector } from "react-redux";
+import Swal from 'sweetalert2';
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLoggedIn,msg,update  } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    isLoggedIn && navigate("/");
+  }, [isLoggedIn]);
+
+  useEffect(()=>{
+    msg && Swal.fire("Opps !",msg,'error');
+  },[msg, update]);
 
   const [payload, setPayload] = useState({
     phone: "",
@@ -56,7 +67,9 @@ const Register = () => {
             invalids++;
           }
           break;
-      }
+        default:
+          break;
+        }
     });
     return invalids;
     // console.log(fiels);
@@ -79,28 +92,31 @@ const Register = () => {
       <h3 className="font-semibold text-2xl mb-3">Đăng ký tài khoản</h3>
       <div className="w-full flex flex-col gap-3">
         <InputFrom
+          type={"name"}
           setInvalidFeilds={setInvalidFeilds}
           invalidFeilds={invalidFeilds}
           label={"HỌ VÀ TÊN"}
           value={payload.name}
           setValue={setPayload}
-          type="name"
+          keyPayload={"name"}
         />
         <InputFrom
+          type={"phone"}
           setInvalidFeilds={setInvalidFeilds}
           invalidFeilds={invalidFeilds}
           label={"SỐ ĐIỆN THOẠI"}
           value={payload.phone}
           setValue={setPayload}
-          type="phone"
+          keyPayload={"phone"}
         />
         <InputFrom
+          type={"password"}
           setInvalidFeilds={setInvalidFeilds}
           invalidFeilds={invalidFeilds}
           label={"MẬT KHẨU"}
           value={payload.password}
           setValue={setPayload}
-          type="password"
+          keyPayload={"password"}
         />
         <Button
           text="Đăng kí"

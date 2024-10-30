@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Register } from "./containers/Public";
+import { Home, Login, Register,RentalApartment,RentalHouse,RentalRoom,RentalSpace,Homepage } from "./containers/Public";
 import { path } from "./ultils/constant";
 
 function App() {
@@ -7,8 +7,13 @@ function App() {
     <div className="h-screen w-screen bg-primary w-1100">
       <Routes>
         <Route path={path.HOME} element={<Home />}>
+          <Route path={'*'} element={<Homepage/>}/>
           <Route path={path.LOGIN} element={<Login />} />
           <Route path={path.REGISTER} element={<Register />} />
+          <Route path={path.CHO_THUE_CAN_HO} element={<RentalApartment/>}/>
+          <Route path={path.CHO_THUE_MAT_BANG} element={<RentalSpace/>}/>
+          <Route path={path.CHO_THUE_PHONG_TRO} element={<RentalRoom/>}/>
+          <Route path={path.NHA_CHO_THUE} element={<RentalHouse/>}/>
         </Route>
       </Routes>
     </div>
