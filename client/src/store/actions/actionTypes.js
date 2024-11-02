@@ -4,7 +4,10 @@ const actionTypes ={
     LOGIN_SUCCSCESS :'LOGIN_SUCCSCESS',
     REGISTER_SUCCESS: 'REGISTER_SUCCSCESS',
     REGISTER_FAIL :'REGISTER_FAIL',
-    LOGOUT: 'LOGUOT'
+    LOGOUT: 'LOGUOT',
+
+
+    GET_POSTS: "GET_POST" 
 }
 
 export default actionTypes

@@ -6,6 +6,7 @@ import initRouters from './src/routes';
 
 import connectDatabase from './src/config/connectDababase';
 
+
 const app = express();
 
 //url nay duoc phep truy cap lay data, va chi duoc su dung 4 method nay

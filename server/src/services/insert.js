@@ -7,11 +7,12 @@ import chothuecanho from "../../data/chothuecanho.json";
 import chothuematbang from "../../data/chothuematbang.json";
 import chothuphongtro from "../../data/chothuephongtro.json";
 import nhachothue from "../../data/nhachothue.json"
+import { where } from 'sequelize';
 
 require('dotenv').config();
 
-// const dataBody = chothuecanho.body
-const dataBody = nhachothue.body
+const dataBody = chothuecanho.body
+// const dataBody = nhachothue.body
 //ma hoa pass
 const hashPassword = password => bcrypt.hashSync(password,bcrypt.genSaltSync(12));
 
@@ -19,7 +20,7 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
     try {
         dataBody.forEach(async (item) => {
             let postId = v4();
-            let labelCode = genarateCode(4);
+            let labelCode = genarateCode("Cho thuê phòng trọ tại đây");
             let attributesId = v4();
             let userId = v4();
             let imagesId = v4();
@@ -32,8 +33,8 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
                 labelCode,
                 address : item?.header?.address,
                 attributesId,
-                // categoryCode : "CTCH",
-                categoryCode : "NCT",
+                // categoryCode : "CTPT",
+                categoryCode : "CTCH",
                 description : JSON.stringify(item?.mainContent?.content),
                 userId,
                 overviewId,
@@ -53,9 +54,12 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
                 image : JSON.stringify(item?.images)
             })
 
-            await db.Label.create({
-                code :labelCode,
-                value : "Cho thue phong tro PTT"
+            await db.Label.findOrCreate({
+                where: {code : labelCode},
+                defaults : {
+                    code :labelCode,
+                    value : "Cho thuê phòng trọ tại đây"
+                }
             })
 
             await db.Overview.create({

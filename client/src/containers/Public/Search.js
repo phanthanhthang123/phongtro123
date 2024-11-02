@@ -6,7 +6,7 @@ const {BsChevronRight,CiLocationOn,PiMoneyThin,FaCrop,FaHouse,IoSearchSharp} = i
 
 const Search = () => {
   return(
-    <div className="p-[10px] bg-[#FEBB02] rounded-lg lg:flex-row flex-col flex gap-2 items-center justify-around">
+    <div className="p-[10px] w-3/5 my-5 bg-[#FEBB02] rounded-lg lg:flex-row flex-col flex gap-2 items-center justify-around">
       <SearchItem IconBefore={<FaHouse/>} fontWeight IconAfter={<BsChevronRight color='rgb(156,163,175)'/>} text={"Phòng trọ,nhà trọ"} />
       <SearchItem IconBefore={<CiLocationOn/>} IconAfter={<BsChevronRight color='rgb(156,163,175)'/>} text={"Toàn quốc"}/>
       <SearchItem IconBefore={<PiMoneyThin/>} IconAfter={<BsChevronRight color='rgb(156,163,175)'/>} text={"Chọn giá"}/>

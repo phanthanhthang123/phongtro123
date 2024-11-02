@@ -6,6 +6,10 @@ import { PiMoneyThin } from "react-icons/pi";
 import { FaCrop } from "react-icons/fa6";
 import { FaHouse } from "react-icons/fa6";
 import { IoSearchSharp } from "react-icons/io5";
+import { IoStar } from "react-icons/io5";
+import { GoHeartFill } from "react-icons/go";
+import { FaRegHeart } from "react-icons/fa6";
+import { BsBookmarkStarFill } from "react-icons/bs";
 
 const icons = {
     CiCirclePlus,
@@ -15,7 +19,11 @@ const icons = {
     PiMoneyThin,
     FaCrop,
     FaHouse,
-    IoSearchSharp
+    IoSearchSharp,
+    IoStar,
+    GoHeartFill,
+    FaRegHeart,
+    BsBookmarkStarFill
 }
 
 export default icons;
