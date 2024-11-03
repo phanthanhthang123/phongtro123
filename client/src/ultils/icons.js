@@ -10,6 +10,9 @@ import { IoStar } from "react-icons/io5";
 import { GoHeartFill } from "react-icons/go";
 import { FaRegHeart } from "react-icons/fa6";
 import { BsBookmarkStarFill } from "react-icons/bs";
+import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import { TbPlayerTrackPrevFilled } from "react-icons/tb";
+
 
 const icons = {
     CiCirclePlus,
@@ -23,7 +26,9 @@ const icons = {
     IoStar,
     GoHeartFill,
     FaRegHeart,
-    BsBookmarkStarFill
+    BsBookmarkStarFill,
+    TbPlayerTrackNextFilled,
+    TbPlayerTrackPrevFilled
 }
 
 export default icons;

@@ -1,5 +1,6 @@
 export const path ={
-    HOME : '/',
+    HOME : '/*',
+    HOME__PAGE: ':page',
     LOGIN : 'login',
     REGISTER: 'register',
     CHO_THUE_CAN_HO: 'cho-thue-can-ho',

@@ -7,7 +7,8 @@ const actionTypes ={
     LOGOUT: 'LOGUOT',
 
 
-    GET_POSTS: "GET_POST" 
+    GET_POSTS: "GET_POST" ,
+    GET_POST_LIMIT: "GET_POST_LIMIT"
 }
 
 export default actionTypes

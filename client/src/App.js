@@ -8,7 +8,8 @@ function App() {
     <div className=" bg-primary ">
       <Routes>
         <Route path={path.HOME} element={<Home />}>
-          <Route path={'/'} element={<Homepage/>}/>
+          <Route path={'*'} element={<Homepage/>}/>
+          <Route path={path.HOME__PAGE} element={<Homepage/>}/>
           <Route path={path.LOGIN} element={<Login />} />
           <Route path={path.REGISTER} element={<Register />} />
           <Route path={path.CHO_THUE_CAN_HO} element={<RentalApartment/>}/>

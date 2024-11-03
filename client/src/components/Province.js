@@ -13,7 +13,7 @@ const Province = () => {
             name={item.name}
             />
           )
-        })}
+        })} 
       </div>
   )
 }

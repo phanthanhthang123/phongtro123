@@ -39,10 +39,12 @@ const Item = ({images,address,attributes,description,star,title,user}) => {
                 </div>
             </div>
 
-            <div className='my-2 flex items-start justify-between overflow-hidden text-ellipsis'>
-                <span className='font-bold text-base text-green-600'>{attributes?.price}</span>
-                <span className='text-sm'>{attributes?.acreage}</span>
-                <span className='text-sm'>{address}</span>
+            <div className='my-2 flex items-center justify-between overflow-hidden text-ellipsis'>
+                <span className='font-bold text-base flex-3 whitespace-nowrap overflow-hidden text-ellipsis text-green-600'>{attributes?.price}</span>
+                <span className='text-sm flex-1'>{attributes?.acreage}</span>
+                <span className='text-sm whitespace-nowrap overflow-hidden text-ellipsis flex-3'>
+                    {`${address.split(',')[address.split(',').length-2]},${address.split(',')[address.split(',').length-1]}`}
+                </span>
             </div>
 
             <p className='text-gray-600 text-sm w-full h-[80px] text-ellipsis overflow-hidden'>
