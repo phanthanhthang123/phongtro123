@@ -8,12 +8,18 @@ import chothuematbang from "../../data/chothuematbang.json";
 import chothuphongtro from "../../data/chothuephongtro.json";
 import nhachothue from "../../data/nhachothue.json"
 import { where } from 'sequelize';
+import { dataArea,dataPrice } from '../ultis/data';
+import { getNumberFromString } from '../ultis/common';
 
 require('dotenv').config();
 
 const dataBody = chothuecanho.body
 // const dataBody = nhachothue.body
 //ma hoa pass
+
+const prices = {
+    
+}
 const hashPassword = password => bcrypt.hashSync(password,bcrypt.genSaltSync(12));
 
 export const insertServices = ()=> new Promise(async (resolve, reject) => {
@@ -26,6 +32,9 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
             let imagesId = v4();
             let overviewId = v4();
 
+            let currentArea = getNumberFromString(item?.header?.attributes?.acreage);
+            let currentPrice = getNumberFromString(item?.header?.attributes?.price);
+
             await db.Post.create({
                 id : postId,
                 title : item?.header?.title,
@@ -33,14 +42,17 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
                 labelCode,
                 address : item?.header?.address,
                 attributesId,
-                // categoryCode : "CTPT",
                 categoryCode : "CTCH",
                 description : JSON.stringify(item?.mainContent?.content),
                 userId,
                 overviewId,
-                imagesId
+                imagesId,
+                areaCode: dataArea.find(area => area.max >= currentArea && area.min <= currentArea)?.code,
+                priceCode: dataPrice.find(price=> price.max >= currentPrice && price.min <= currentPrice)?.code,
             })
-            
+
+
+
             await db.Attribute.create({
                 id : attributesId,
                 price : item?.header?.attributes?.price,
@@ -82,8 +94,31 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
             })
         })
 
-
         resolve('Done.')        
+    } catch (error) {
+        reject(error);
+    }
+})
+
+export const createPricesAndArea = ()=> new Promise(async (resolve, reject) => {
+    try {
+        dataPrice.forEach(async (item,index) => {
+            await db.Price.create({
+                code: item.code,
+                order: index +1, 
+                value: item.value
+            })
+        });
+
+        dataArea.forEach(async (item,index) => {
+            await db.Area.create({
+                code: item.code,
+                order:index +1,
+                value: item.value
+            })
+        });
+
+        resolve('OK')
     } catch (error) {
         reject(error);
     }

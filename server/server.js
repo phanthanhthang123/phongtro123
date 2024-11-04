@@ -1,14 +1,14 @@
 import express from 'express';
 require('dotenv').config();
 import cors from 'cors';
-
 import initRouters from './src/routes';
-
 import connectDatabase from './src/config/connectDababase';
-
 
 const app = express();
 
+// import { dataPrice,dataArea } from './src/ultis/data';
+// console.log(dataArea)
+// console.log(dataPrice)
 //url nay duoc phep truy cap lay data, va chi duoc su dung 4 method nay
 app.use(cors({
     origin: process.env.CLIENT_URL,

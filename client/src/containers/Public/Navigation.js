@@ -1,26 +1,18 @@
 import React,{useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
-
-import {apiGetCategories} from '../../services/catelogy'
-
 import { fomatVietnameseToString } from '../../ultils/CommonFunction/fomatVietnameseToString';
+import { useDispatch ,useSelector} from 'react-redux';
+import * as actions from '../../store/actions';
 
 const notActive = 'hover:bg-secondary2 h-full px-4 flex items-center ';
 const active = 'hover:bg-secondary2 h-full px-4 bg-secondary2 flex items-center ';
 
 const Navigation = () => {
-  const [categories,setCategories] = useState([]);
-
+  const dispatch = useDispatch();
+  const {categories} = useSelector(state => state.app)
   useEffect(()=>{
-    const fetchCategory = async ()=>{
-      const respone  = await apiGetCategories();
-      if(respone?.data?.err === 0 ){
-        setCategories(respone.data.respone);
-      }
-    } 
-    fetchCategory();
+    dispatch(actions.getCategories())
   },[])
-  
 
   return (
     <div className='w-full flex justify-center items-center h-[40px] bg-secondary1'>

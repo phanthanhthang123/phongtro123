@@ -1,9 +1,8 @@
 import * as insertServices from '../services/insert'
-import genarateCode from "../ultis/genarateCode";
 
 export const insert = async (req,res)=>{
     try {
-        const response = await insertServices.insertServices();
+        const response = await insertServices.createPricesAndArea();
 
         return res.status(200).json(response);
 
