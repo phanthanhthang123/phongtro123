@@ -2,16 +2,27 @@ import React,{useEffect} from 'react'
 import {Button, Item} from '../../components'
 import { getPost,getPostLimit } from '../../store/actions/post'
 import {useDispatch,useSelector} from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 
 
-const List = ({page}) => {
+const List = () => {
   const dispatch = useDispatch();
   const {posts} = useSelector(state => state.post)
+  const [searchParams] = useSearchParams();
 
   useEffect(()=>{
-    let offset = page ? page-1 : 0;
-    dispatch(getPostLimit(offset));
-  },[page])
+    let params = [];
+    for(let entry of searchParams.entries()){
+      params.push(entry);
+    }
+    let searchParamsObject = {}
+    params?.map(i=>{
+      searchParamsObject = {...searchParamsObject,[i[0]] : i[1]}
+    })
+    // console.log(searchParamsObject)
+
+    dispatch(getPostLimit(searchParamsObject));
+  },[searchParams])
 
   // console.log(page)
   return (

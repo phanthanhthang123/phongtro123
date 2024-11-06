@@ -47,8 +47,8 @@ export const insertServices = ()=> new Promise(async (resolve, reject) => {
                 userId,
                 overviewId,
                 imagesId,
-                areaCode: dataArea.find(area => area.max >= currentArea && area.min <= currentArea)?.code,
-                priceCode: dataPrice.find(price=> price.max >= currentPrice && price.min <= currentPrice)?.code,
+                areaCode: dataArea.find(area => area.max > currentArea && area.min <= currentArea)?.code,
+                priceCode: dataPrice.find(price=> price.max > currentPrice && price.min <= currentPrice)?.code,
             })
 
 

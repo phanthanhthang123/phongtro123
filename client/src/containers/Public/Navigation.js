@@ -21,7 +21,7 @@ const Navigation = () => {
               <div className='text-white h-full flex items-center my-4 justify-center'>
                 <NavLink to={'/'} className={({isActive})=>{
                   return isActive ? active : notActive
-                }}> 
+                }}>  
                   Trang Chủ 
                 </NavLink>
               </div>

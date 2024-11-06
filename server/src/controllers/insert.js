@@ -2,7 +2,7 @@ import * as insertServices from '../services/insert'
 
 export const insert = async (req,res)=>{
     try {
-        const response = await insertServices.createPricesAndArea();
+        const response = await insertServices.insertServices();
 
         return res.status(200).json(response);
 

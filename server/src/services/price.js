@@ -1,3 +1,4 @@
+import { where } from 'sequelize';
 import db from '../models'
 
 //GET ALL price
@@ -17,3 +18,5 @@ export const getPriceService = ()=> new Promise( async (resolve, reject) => {
         reject(error);
     }
 })
+
+

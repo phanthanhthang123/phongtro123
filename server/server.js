@@ -6,9 +6,8 @@ import connectDatabase from './src/config/connectDababase';
 
 const app = express();
 
-// import { dataPrice,dataArea } from './src/ultis/data';
-// console.log(dataArea)
-// console.log(dataPrice)
+// import { getNumberFromString } from './src/ultis/common';
+// console.log(getNumberFromString('25.5 triệu/tháng'));
 //url nay duoc phep truy cap lay data, va chi duoc su dung 4 method nay
 app.use(cors({
     origin: process.env.CLIENT_URL,
