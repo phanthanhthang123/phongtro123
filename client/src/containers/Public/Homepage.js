@@ -2,18 +2,11 @@ import React, { useEffect } from "react";
 import { text } from "../../ultils/constant";
 import { Province,ItemSideBar,RelatedPost } from "../../components";
 import {List,Pagination} from './index';
-import {useSelector,useDispatch} from 'react-redux';
-import * as action from '../../store/actions'
+import {useSelector} from 'react-redux';
 
 const Homepage = () => {
   const {categories,prices,areas} = useSelector(state => state.app);
   // console.log(params.get('page'))
-  const dispatch = useDispatch();
-
-  useEffect(()=>{
-    dispatch(action.getPrices())
-    dispatch(action.getAreas())
-  },[])
 
   return (
     <div className=" w-full flex flex-col gap-3">
