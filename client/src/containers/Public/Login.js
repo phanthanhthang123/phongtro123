@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const { isLoggedIn, msg,update } = useSelector((state) => state.auth);
   useEffect(() => {
     isLoggedIn && navigate("/");
@@ -17,6 +17,7 @@ const Login = () => {
   useEffect(()=>{
     msg && Swal.fire("Opps !",msg,'error');
   },[msg, update]);
+
 
   const [invalidFeilds, setInvalidFeilds] = useState([]); //chua cac truong khong hop le
   const validate = (payload) => {

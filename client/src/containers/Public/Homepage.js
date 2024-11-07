@@ -16,7 +16,7 @@ const Homepage = () => {
   },[])
 
   return (
-    <div className="border border-red-500 w-full flex flex-col gap-3">
+    <div className=" w-full flex flex-col gap-3">
       <div>
         <h1 className="text-[28px] font-bold ">{text.HOME_TITLE}</h1>
         <p className="text-base text-gray-700">{text.HOME_DESCRIPTION}</p>
@@ -27,14 +27,11 @@ const Homepage = () => {
         <div className="w-[70%]">
           <List />
           <Pagination />
-          <div className="h-[500px]">
-
-          </div>
         </div>
-        <div className="w-[30%] border border-green-600 gap-4 flex flex-col justify-start items-center">
+        <div className="w-[30%] gap-4 flex flex-col justify-start items-center">
           <ItemSideBar isDouble={false} content = {categories} title = 'Danh sách cho thuê'/>
           <ItemSideBar isDouble={true} type='priceCode' content={prices} title = 'Xem theo giá'/>
-          <ItemSideBar isDouble={true} content={areas} title = 'Xem theo diện tích'/>
+          <ItemSideBar isDouble={true} type='areaCode' content={areas} title = 'Xem theo diện tích'/>
         </div>
       </div>
     </div>
