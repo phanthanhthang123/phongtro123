@@ -3,11 +3,26 @@ import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import {Navigation,Search} from "./index";
 import { Intro,Contact } from "../../components";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import * as action from '../../store/actions'
+import { useLocation } from "react-router-dom";
+import { apiGetCurrent } from "../../services/user";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const {isLoggedIn} = useSelector(state => state.auth)
+
+
+  useEffect(()=>{
+    const fetchCurrent = async ()=>{
+      const respone = await apiGetCurrent();
+      console.log(respone)
+    }
+    
+    isLoggedIn && fetchCurrent()
+  },[isLoggedIn])
+
   useEffect(()=>{
     dispatch(action.getPrices())
     dispatch(action.getAreas())
@@ -20,7 +35,7 @@ const Home = () => {
     <div className="w-full gap-4 flex flex-col items-center h-full ">
       <Header />
       <Navigation />
-      <Search/>
+      {!(location.pathname ==='/login' || location.pathname==='/register') && <Search/>}
       <div className="w-4/5 items-center lg:w-3/5 flex flex-col justify-start mt-8">
         <Outlet />
       </div>
