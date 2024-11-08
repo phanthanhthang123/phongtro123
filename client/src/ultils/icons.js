@@ -12,11 +12,12 @@ import { FaRegHeart } from "react-icons/fa6";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";
-
+import { GrLinkPrevious } from "react-icons/gr";
 
 const icons = {
     CiCirclePlus,
     GrNext,
+    GrLinkPrevious,
     BsChevronRight,
     CiLocationOn,
     PiMoneyThin,

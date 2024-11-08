@@ -11,6 +11,8 @@ const Home = () => {
   useEffect(()=>{
     dispatch(action.getPrices())
     dispatch(action.getAreas())
+    dispatch(action.getProvince())
+    
   },[])
 
 
@@ -22,7 +24,6 @@ const Home = () => {
       <div className="w-4/5 items-center lg:w-3/5 flex flex-col justify-start mt-8">
         <Outlet />
       </div>
-      
       <Intro/>
       <Contact/>
       <div className="h-[500px]">

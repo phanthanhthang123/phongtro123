@@ -70,7 +70,33 @@ export const getAreas = ()=> async (dispatch) => {
     } catch (error) {
         dispatch({
             type: actionTypes.GET_AREAS,
-            areas: null
+            areas: null,
+            msg :''
+        })
+    }
+}
+
+export const getProvince = ()=> async (dispatch) => {
+    try {
+        const response = await apis.apiGetProvinces();
+        if(response?.data?.err === 0){
+            dispatch({ 
+                type : actionTypes.GET_PROVINCE,
+                provinces : response.data.respone,
+                msg :'',
+            })
+        }else{
+            dispatch({
+                type : actionTypes.GET_PROVINCE,
+                provinces : null,
+                msg :''
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_PROVINCE,
+            provinces : null,
+            msg :''
         })
     }
 }
