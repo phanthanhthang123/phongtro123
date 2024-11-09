@@ -11,3 +11,4 @@ export {default as Intro} from './Intro';
 export {default as RelatedPost} from './RelatedPost';
 export {default as Sitem} from './Sitem';
 export {default as Modal} from './Modal';
+export {default as User} from './User';

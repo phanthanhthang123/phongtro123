@@ -1,6 +1,6 @@
 import React, { useCallback,useEffect,useRef,useState } from "react";
 import logo from "../../assets/img/logo-phongtro.svg";
-import { Button } from "../../components";
+import { Button,User } from "../../components";
 import icons from "../../ultils/icons";
 import { useNavigate, Link,useSearchParams} from "react-router-dom";
 import { path } from "../../ultils/constant";
@@ -16,7 +16,6 @@ const Header = () => {
   const headerRef = useRef();
   const [searchParams] = useSearchParams();
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const {currentData} = useSelector(state => state.user);
   // console.log(currentData)
 
   const [isShowMenu,setIsShowMenu] = useState(false)
@@ -65,7 +64,9 @@ const Header = () => {
             />
           </div> }
           {isLoggedIn && <div className="flex items-center gab-1 relative">
-            <small>{currentData?.name}</small>
+            <small>
+              <User/>
+            </small>
             <Button
               text={"Quản lý tài khoản"}
               textColor="text-white"
