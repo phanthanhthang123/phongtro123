@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Home, Login, Register,Rental,Homepage,DetailPost } from "./containers/Public";
+import { System,CreatePost } from "./containers/System";
+
 import { path } from "./ultils/constant";
 
 
@@ -18,6 +20,9 @@ function App() {
           <Route path={path.NHA_CHO_THUE} element={<Rental/>}/>
           <Route path={path.DETAIL_POST__TITLE__POSTID} element={<DetailPost/>}/>
           <Route path={'chi-tiet/*'} element={<DetailPost/>}/>
+        </Route>
+        <Route path={path.SYSTEM} element={<System/>}>
+          <Route path={path.CREATE_POST} element={<CreatePost/>}/>
         </Route>
       </Routes>
     </div>
