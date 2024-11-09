@@ -6,22 +6,18 @@ import { Intro,Contact } from "../../components";
 import { useDispatch,useSelector } from "react-redux";
 import * as action from '../../store/actions'
 import { useLocation } from "react-router-dom";
-import { apiGetCurrent } from "../../services/user";
 
 const Home = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const {isLoggedIn} = useSelector(state => state.auth)
-
-
+  
   useEffect(()=>{
-    const fetchCurrent = async ()=>{
-      const respone = await apiGetCurrent();
-      console.log(respone)
-    }
-    
-    isLoggedIn && fetchCurrent()
+    setTimeout(()=>{
+      isLoggedIn && dispatch(action.getCurrent())
+    },200)
   },[isLoggedIn])
+  
 
   useEffect(()=>{
     dispatch(action.getPrices())

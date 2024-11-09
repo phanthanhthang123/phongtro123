@@ -13,6 +13,11 @@ import { BsBookmarkStarFill } from "react-icons/bs";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { GrLinkPrevious } from "react-icons/gr";
+import { FaChevronDown } from "react-icons/fa";
+import { HiPencilSquare } from "react-icons/hi2";
+import { LuLogOut } from "react-icons/lu";
+import { MdOutlinePostAdd } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
 const icons = {
     CiCirclePlus,
@@ -29,7 +34,12 @@ const icons = {
     FaRegHeart,
     BsBookmarkStarFill,
     TbPlayerTrackNextFilled,
-    TbPlayerTrackPrevFilled
+    TbPlayerTrackPrevFilled,
+    FaChevronDown,
+    HiPencilSquare,
+    LuLogOut,
+    MdOutlinePostAdd,
+    FaUser
 }
 
 export default icons;
