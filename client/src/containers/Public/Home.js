@@ -3,20 +3,15 @@ import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import {Navigation,Search} from "./index";
 import { Intro,Contact } from "../../components";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as action from '../../store/actions'
 import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const {isLoggedIn} = useSelector(state => state.auth)
   
-  useEffect(()=>{
-    setTimeout(()=>{
-      isLoggedIn && dispatch(action.getCurrent())
-    },200)
-  },[isLoggedIn])
+
   
 
   useEffect(()=>{
