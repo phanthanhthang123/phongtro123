@@ -55,7 +55,7 @@ const Modal = ({ setIsShowModal, content, name }) => {
           </span>
         </div>
 
-        {(name === 'category' || name ==='province') && 
+        {(name === 'category' || name ==='province' || name==='price' || name==='area') && 
         <div className=" px-4 flex flex-col">
           {content?.map((item, index) => {
             return (
@@ -72,7 +72,7 @@ const Modal = ({ setIsShowModal, content, name }) => {
           })}
         </div>}
 
-        {(name==='price' || name==='area') && 
+        {/* {(name==='price' || name==='area') && 
         <div className="p-12 w-full">
           <div className="flex flex-col w-full items-center justify-center relative">
             <div onClick={handelClickStack} id="track" className="slider-track h-[7px] absolute top-0 right-0 left-0 bottom-0 w-full bg-gray-300 rounded-full cursor-pointer"></div>
@@ -97,7 +97,7 @@ const Modal = ({ setIsShowModal, content, name }) => {
             />     
           </div>
           
-        </div>}
+        </div>} */}
         
       </div>
     </div>

@@ -3,6 +3,7 @@ import {text} from '../ultils/dataContact'
 import {Button} from '../components'
 
 const Contact = () => {
+  
   return (
     <div className="w-3/5  items-center justify-center gap-6 flex flex-col bg-white rounded-md shadow-md">
         <img 

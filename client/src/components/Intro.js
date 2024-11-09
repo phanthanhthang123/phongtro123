@@ -1,9 +1,10 @@
-import React,{memo} from 'react'
+import React,{memo,useCallback} from 'react'
 import { text } from '../ultils/dataIntro'
 import icons from '../ultils/icons'
 import {Button} from '../components'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { fomatVietnameseToString } from '../ultils/CommonFunction/fomatVietnameseToString'
 
 const {IoStar} = icons;
@@ -11,6 +12,10 @@ const start = [1,2,3,4,5];
 
 const Intro = () => {
   const {categories} = useSelector(state => state.app);
+  const navigate = useNavigate();
+  const handleCreatePost = useCallback(()=>{
+    navigate('/he-thong/tao-moi-bai-dang')
+  })
   return (
     <div className='w-3/5 bg-white rounded-md shadow-md p-4 gap-4 flex flex-col justify-center items-center'>
         <h3 className='font-bold text-lg'>{text.title}</h3>
@@ -60,6 +65,7 @@ const Intro = () => {
         bgColor ='bg-secondary2'
         textColor = 'text-white'
         fontBold = 'font-bold'
+        onClick={handleCreatePost}
         />
         <div className='h-[12px]'></div>
 

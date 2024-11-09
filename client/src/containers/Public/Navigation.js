@@ -15,7 +15,7 @@ const Navigation = ({isAdmin}) => {
   },[])
 
   return (
-    <div className={`w-full flex ${isAdmin ? 'justify-start' : 'justify-center'} items-center h-[40px] bg-secondary1`}>
+    <div className={`w-full flex ${isAdmin ? 'justify-start' : 'justify-center'} items-center h-[45px] bg-secondary1`}>
         <div className='w-4/5 lg:w-3/5 flex items-center h-full justify-start text-sm font-medium  '>
 
               <div className='text-white h-full flex items-center my-4 justify-center'>

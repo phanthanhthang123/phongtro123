@@ -8,7 +8,7 @@ import { useSelector,useDispatch } from "react-redux";
 import * as actions from "../../store/actions"
 import { menuManage } from "../../ultils/menuManage";
 
-const { CiCirclePlus,FaChevronDown,LuLogOut } = icons;
+const { CiCirclePlus,FaChevronDown,LuLogOut,FaPiggyBank,PiGarageFill } = icons;
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,27 +29,44 @@ const Header = () => {
     navigate(path.REGISTER);
   });
 
+  const goCreatePost = useCallback (()=>{
+    navigate('/he-thong/tao-moi-bai-dang')
+  });
+
   useEffect(()=>{
     headerRef.current.scrollIntoView({behavior: 'smooth',block : 'start'})
   },[searchParams.get('page')])
+
+  useEffect(()=>{
+    headerRef.current.scrollIntoView({behavior: 'smooth',block : 'start'})
+  },[searchParams.get('priceCode')])
+
+  useEffect(()=>{
+    headerRef.current.scrollIntoView({behavior: 'smooth',block : 'start'})
+  },[searchParams.get('areaCode')])
 
   const handleShowMenu = ()=>{
     setIsShowMenu(!isShowMenu)
   }
 
   return (
-    <div ref={headerRef} className="w-3/5">
+    <div ref={headerRef} className="w-3/5 h-[40px] mt-3 flex items-center">
       <div className="w-full items-center flex justify-between">
-        <Link to={path.HOME}>
-          <img
+        <Link to={path.HOME} >
+          {/* <img
             src={logo}
             alt="Logo"
             className="w-[240px] h-[70px] object-container"
-          />
+          /> */}
+          <span className="font-semibold text-[24px] flex items-center gap-1">
+            <PiGarageFill/>
+            PhongtroPTT
+            <FaPiggyBank/>
+          </span>
         </Link>
         <div className="flex items-center gab-1">
           {!isLoggedIn && <div className="flex items-center gab-1">
-            <small>Phongtro123.com xin chào</small>
+            <small>PhongtroPTT xin chào</small>
             <Button
               text={"Đăng nhập"}
               textColor="text-white"
@@ -103,6 +120,7 @@ const Header = () => {
             textColor="text-white"
             bgColor="bg-secondary2"
             IcAfter={CiCirclePlus}
+            onClick={goCreatePost}
           />
         </div>
       </div>

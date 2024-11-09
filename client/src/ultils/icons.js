@@ -10,6 +10,8 @@ import { FaChevronDown, FaUser } from "react-icons/fa";
 import { HiPencilSquare } from "react-icons/hi2";
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlinePostAdd } from "react-icons/md";
+import { FaPiggyBank } from "react-icons/fa";
+import { PiGarageFill } from "react-icons/pi";
 
 const icons = {
   CiCirclePlus,
@@ -35,6 +37,8 @@ const icons = {
   FaRegPenToSquare,
   BsFillFilePostFill,
   IoChatbubblesOutline,
+  FaPiggyBank,
+  PiGarageFill
 };
 
 export default icons;
