@@ -99,6 +99,7 @@ const Register = () => {
           value={payload.name}
           setValue={setPayload}
           keyPayload={"name"}
+          placeholder={'Ví dụ: Phan Thanh Thắng'}
         />
         <InputFrom
           type={"phone"}
@@ -108,6 +109,7 @@ const Register = () => {
           value={payload.phone}
           setValue={setPayload}
           keyPayload={"phone"}
+          placeholder={'Ví dụ : 0967987730'}
         />
         <InputFrom
           type={"password"}
@@ -117,6 +119,7 @@ const Register = () => {
           value={payload.password}
           setValue={setPayload}
           keyPayload={"password"}
+          placeholder={"Ví dụ : thang@123"}
         />
         <Button
           text="Đăng kí"

@@ -94,6 +94,7 @@ const Login = () => {
           value={payload.phone}
           setValue={setPayload}
           keyPayload={"phone"}
+          placeholder={"Ví dụ : 0967987730"}
         />
         <InputFrom
           invalidFeilds={invalidFeilds}
@@ -103,6 +104,7 @@ const Login = () => {
           setValue={setPayload}
           type={"password"}
           keyPayload={"password"}
+          placeholder={"Ví dụ : thang@123"}
         />
         <Button
           text="Đăng nhập"

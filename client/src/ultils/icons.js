@@ -12,6 +12,7 @@ import { LuLogOut } from "react-icons/lu";
 import { MdOutlinePostAdd } from "react-icons/md";
 import { FaPiggyBank } from "react-icons/fa";
 import { PiGarageFill } from "react-icons/pi";
+import { ImCamera } from "react-icons/im";
 
 const icons = {
   CiCirclePlus,
@@ -38,7 +39,8 @@ const icons = {
   BsFillFilePostFill,
   IoChatbubblesOutline,
   FaPiggyBank,
-  PiGarageFill
+  PiGarageFill,
+  ImCamera
 };
 
 export default icons;

@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from "react";
-import { text } from "../../ultils/constant";
 import { Province,ItemSideBar,RelatedPost } from "../../components";
 import {List,Pagination} from './index';
 import {useSelector} from 'react-redux';

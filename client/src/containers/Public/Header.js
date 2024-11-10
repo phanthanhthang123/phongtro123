@@ -50,7 +50,7 @@ const Header = () => {
   }
 
   return (
-    <div ref={headerRef} className="w-3/5 h-[40px] mt-3 flex items-center">
+    <div ref={headerRef} className="w-3/5 h-[40px] pt-3 flex items-center">
       <div className="w-full items-center flex justify-between">
         <Link to={path.HOME} >
           {/* <img
