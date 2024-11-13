@@ -3,11 +3,12 @@ import {Select,InputReadOnly} from './index'
 import { apiGetPublicProvinces,apiGetPublicDistrict } from '../services'
 
 const Address = ({setPayload}) => {
+  
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
-  const [province, setProvince] = useState();
-  const [district, setDistrict] = useState()
-
+  const [province, setProvince] = useState('');
+  const [district, setDistrict] = useState('');
+  
   useEffect(()=>{
     const fetchPublicProvinces = async()=>{
         const respone = await apiGetPublicProvinces();

@@ -1,25 +1,14 @@
-import React,{useEffect} from "react";
+import React from "react";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import {Navigation,Search} from "./index";
 import { Intro,Contact } from "../../components";
-import { useDispatch } from "react-redux";
-import * as action from '../../store/actions'
 import { useLocation } from "react-router-dom";
 
 const Home = () => {
-  const dispatch = useDispatch();
   const location = useLocation();
   
 
-  
-
-  useEffect(()=>{
-    dispatch(action.getPrices())
-    dispatch(action.getAreas())
-    dispatch(action.getProvince())
-    
-  },[])
 
 
   return (

@@ -13,6 +13,7 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { FaPiggyBank } from "react-icons/fa";
 import { PiGarageFill } from "react-icons/pi";
 import { ImCamera } from "react-icons/im";
+import { ImBin } from "react-icons/im";
 
 const icons = {
   CiCirclePlus,
@@ -40,7 +41,8 @@ const icons = {
   IoChatbubblesOutline,
   FaPiggyBank,
   PiGarageFill,
-  ImCamera
+  ImCamera,
+  ImBin 
 };
 
 export default icons;

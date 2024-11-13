@@ -4,7 +4,9 @@ import { getNumbersArea, getNumbersPrice } from "./getNumbers"
 export const getCodePrice = (totals) => {
     let arr = []
     return totals?.map(item => {
+        // console.log(item)
         let arrMaxMin = getNumbersPrice(item.value)
+        // console.log(arrMaxMin)
         if (arrMaxMin.length === 1) arr.push(arrMaxMin[0])
         let sortedArr = arr.sort()
         return ({
