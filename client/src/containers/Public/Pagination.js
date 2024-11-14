@@ -59,7 +59,7 @@ const Pagination = () => {
         )
       })}
       {!isHideEnd && <PageNumber text={"..."} />}
-      {!isHideEnd && <PageNumber icon={<TbPlayerTrackNextFilled />} setCurrentPage={setCurrentPage} text={Math.floor(count / posts.length)}/>}
+      {!isHideEnd && <PageNumber icon={<TbPlayerTrackNextFilled />} setCurrentPage={setCurrentPage} text={Math.ceil(count / posts.length)}/>}
     </div>
   );
 };

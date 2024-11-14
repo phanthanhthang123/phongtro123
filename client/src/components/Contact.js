@@ -23,7 +23,7 @@ const Contact = ({width}) => {
                     </div>
                 )
             })}
-            <Button text='Gửi liên hệ' fontBold = 'font-bold'  textColor='text-white' bgColor='bg-blue-900'/>
+            <Button text='Gửi liên hệ' fontBold = 'font-bold'  textColor='text-white' bgColor='bg-blue-900' underline='underline'/>
         </div>
         <div className="h-[50px]"></div>
     </div>

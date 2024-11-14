@@ -149,7 +149,7 @@ const CreatePost = () => {
                 }
               </div>
           </div>
-          <Button onClick={handleSumbit} text='Tạo mới' py='py-2' fontBold='font-bold' bgColor='bg-green-600' textColor='text-white' className='flex items-center justify-center' />
+          <Button underline='underline' onClick={handleSumbit} text='Tạo mới' py='py-2' fontBold='font-bold' bgColor='bg-green-600' textColor='text-white' className='flex items-center justify-center' />
           <div className="h-[500px]">
           </div>
         </div>

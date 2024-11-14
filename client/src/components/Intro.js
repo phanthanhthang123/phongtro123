@@ -66,6 +66,7 @@ const Intro = () => {
         textColor = 'text-white'
         fontBold = 'font-bold'
         onClick={handleCreatePost}
+        underline='underline'
         />
         <div className='h-[12px]'></div>
 

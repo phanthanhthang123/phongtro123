@@ -14,7 +14,7 @@ import { FaPiggyBank } from "react-icons/fa";
 import { PiGarageFill } from "react-icons/pi";
 import { ImCamera } from "react-icons/im";
 import { ImBin } from "react-icons/im";
-
+import { RiDeleteBin6Line } from "react-icons/ri";
 const icons = {
   CiCirclePlus,
   GrNext,
@@ -42,7 +42,8 @@ const icons = {
   FaPiggyBank,
   PiGarageFill,
   ImCamera,
-  ImBin 
+  ImBin ,
+  RiDeleteBin6Line
 };
 
 export default icons;

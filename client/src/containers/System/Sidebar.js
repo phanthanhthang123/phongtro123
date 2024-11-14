@@ -19,7 +19,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-[256px] flex-none p-4 flex flex-col gap-6">
+    <div className="w-[256px] bg-[#F5F5F5] h-full flex-none p-4 flex flex-col gap-6">
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <img
@@ -40,7 +40,7 @@ const Sidebar = () => {
             ?.slice(0, 6)}`}</span>
         </span>
       </div>
-
+      
       <div>
         {menuSidebar?.map((item, index) => {
           return (
@@ -61,6 +61,7 @@ const Sidebar = () => {
           Thoát
         </span>
       </div>
+
     </div>
   );
 };
