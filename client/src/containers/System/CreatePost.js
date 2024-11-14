@@ -120,11 +120,11 @@ const CreatePost = () => {
                   className="w-full flex flex-col justify-center items-center "
                 >
                   {isLoading ? 
-                  <div className="flex flex-col w-full items-center rounded-md h-[200px] my-4 Loading gap-1 justify-center border-gray-400 border-dashed border-2 bg-white cursor-pointer">
+                  <div className="flex flex-col w-full items-center rounded-md h-[200px] my-4  gap-1 justify-center border-gray-400 border-dashed border-2 bg-white cursor-pointer">
                     <Loading/>
                     Đang tải ảnh
                   </div> : 
-                  <div className="flex flex-col w-full items-center rounded-md h-[200px] my-4 Loading gap-1 justify-center border-gray-400 border-dashed border-2 bg-white cursor-pointer">
+                  <div className="flex flex-col w-full items-center rounded-md h-[200px] my-4 gap-1 justify-center border-gray-400 border-dashed border-2 bg-white cursor-pointer">
                     <ImCamera color="blue" size={60}/>
                     Thêm ảnh
                   </div>}

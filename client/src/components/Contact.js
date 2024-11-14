@@ -2,10 +2,10 @@ import React from "react";
 import {text} from '../ultils/dataContact'
 import {Button} from '../components'
 
-const Contact = () => {
+const Contact = ({width}) => {
   
   return (
-    <div className="w-3/5  items-center justify-center gap-6 flex flex-col bg-white rounded-md shadow-md">
+    <div className={width ? `w-${width}  items-center border-dashed border-2 justify-center gap-6 flex flex-col bg-white rounded-[50px] shadow-md` :"w-3/5  items-center justify-center gap-6 flex flex-col bg-white rounded-[50px] border-dashed border-2 shadow-md"}>
         <img 
             src={text.image} 
             alt="thumbnal" 

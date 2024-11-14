@@ -3,6 +3,7 @@ import db from '../models'
 import {v4 as genarateId} from 'uuid' 
 import genarateCode from '../ultis/genarateCode';
 import moment from 'moment'
+import genarateDate from '../ultis/genarateDate';
 
 export const getPostsService = () => new Promise(async (resolve, reject) => {
     try {
@@ -90,7 +91,7 @@ export const createNewPostService = (body,userId) => new Promise(async (resolve,
         const overviewId = genarateId();
         let labelCode = genarateCode(body.label).trim()
         const hashtag = `#${Math.floor(Math.random()*Math.pow(10,6))}`
-        const currentDate = new Date();
+        const currentDate = genarateDate();
         
         await db.Post.create({
             id: genarateId(),
@@ -130,8 +131,8 @@ export const createNewPostService = (body,userId) => new Promise(async (resolve,
             type: body?.category,
             target: body?.target,
             bounus: 'Tin thường',
-            created: currentDate,
-            expire: currentDate.setDate(currentDate.getDate() + 10),
+            created: currentDate.today,
+            expire: currentDate.expireDay,
         });
 
         await db.Province.findOrCreate({
@@ -161,5 +162,35 @@ export const createNewPostService = (body,userId) => new Promise(async (resolve,
         })
     } catch (error) {
         reject( error);
+    }
+})
+
+export const getPostLimitAdminService = (page,id,query) => new Promise(async (resolve, reject) => {
+    try {
+        let offset = (!page || +page <= 1 ) ? 0 : (+page -1);
+        const queries = {...query,userId : id}
+        const response = await db.Post.findAndCountAll({
+            where: queries,
+            raw : true,
+            nest : true,
+            offset: offset * (+process.env.LIMIT),
+            limit : +process.env.LIMIT,
+            order: [['createdAt','DESC']],
+            include : [
+                {model: db.Image,as: 'images',attributes :['image']},
+                {model: db.Attribute, as: 'attributes',attributes :['price','acreage','published']},
+                {model: db.User, as: 'user',attributes :['name','zalo','phone']},
+                {model: db.Overview, as: 'overviews'},
+            ],
+            attributes: ['id','title','star','address','description']
+        })
+
+        resolve({
+            err : response ? 0 : 1,
+            msg : response ? 'OK' : 'Getting Posts is failed',
+            response
+        })
+    } catch (error) {
+        reject(error);
     }
 })

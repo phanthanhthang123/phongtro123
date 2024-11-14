@@ -65,5 +65,15 @@ export const apiCreatePost = (payload) => new Promise(async (resolve, reject) =>
     }
 })
 
-
+export const apiGetPostsLimitAdmin = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method : 'GET',
+            url : `/api/v1/post/limit-admin`,
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
 
