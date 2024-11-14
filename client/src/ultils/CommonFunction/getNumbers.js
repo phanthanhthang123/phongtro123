@@ -1,12 +1,10 @@
 export const getNumbersPrice = (string) =>
   string
-    .split("")
-    .map((item) => +item)
-    .filter((item) => !item === false);
-
+    .match(/\d+/g) // Matches all numbers in the string
+    .map(Number); // Converts the matches to numbers
 
 export const getNumbersArea = (string) =>
   string
-    .split("")
-    .map((item) => +item.match(/\d+/))
-    .filter((item) => item !== 0);
+    .match(/\d+/g) // Matches all numbers in the string
+    .map(Number); // Converts the matches to numbers
+

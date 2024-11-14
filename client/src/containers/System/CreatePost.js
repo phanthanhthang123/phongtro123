@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import {Overview,Address,Loading,Button} from '../../components'
 import icons from "../../ultils/icons";
 import { apiUploadImages } from "../../services";
-import { getCodes,getCodeArea } from "../../ultils/CommonFunction/getCodes";
+import { getCodes,getCodesArea } from "../../ultils/CommonFunction/getCodes";
 
 import { useSelector } from "react-redux";
 
@@ -64,11 +64,18 @@ const CreatePost = () => {
     
     
   const handleSumbit = ()=>{      
-    let priceCodeArr = getCodes([+payload.priceNumber,+payload.priceNumber],prices);
-    let priceCode = priceCodeArr[priceCodeArr.length -1 ]?.code;
+    let priceCodeArr = getCodes(+payload.priceNumber,prices,1,15);
+    let getPriceCode = priceCodeArr[priceCodeArr.length -1 ]?.code;
 
-    console.log(priceCode)
+    let areaCodeArr = getCodesArea(+payload.areaNumber,areas,0,90);
+    let getAreaCode = areaCodeArr[0]?.code;
 
+    setPayload(prev => ({
+      ...prev,
+      priceCode : getPriceCode ? getPriceCode : '',
+      areaCode : getAreaCode ? getAreaCode : ''
+    }))
+    console.log(payload)
   }
 
   return (
