@@ -4,6 +4,10 @@ import { useSelector } from 'react-redux'
 
 const targets = [
   {
+    code : 'Tất cả',
+    value : 'Nam hoặc Nũ'
+  },
+  {
     code : 'Nam',
     value : 'Nam'
   },

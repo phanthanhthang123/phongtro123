@@ -17,7 +17,6 @@ const {LuLogOut} = icons;
 const Sidebar = () => {
   const { currentData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(currentData?.id)
 
   return (
     <div className="w-[256px] flex-none p-4 flex flex-col gap-6">

@@ -23,11 +23,11 @@ const Item = ({images,address,attributes,description,star,title,user,id}) => {
         to={`chi-tiet/${fomatVietnameseToString(title)}/${id}`} 
         className='w-2/5 flex flex-wrap gap-[2px] items-start relative cursor-pointer'
         >
-           {images.length > 0 && images.filter((item,index)=> indexs.some(i => i===index))?.map((i,index) => {
+           {images?.length > 0 && images?.filter((item,index)=> indexs.some(i => i===index))?.map((i,index) => {
             return <img key={index} src={i} alt='preview' className='w-[110px] h-[150px] object-cover' />
            })}
 
-            <span className='bg-overlay-30 text-white px-2 rounded-md absolute bottom-2 left-1'>{`${images.length} ảnh`}</span>
+            <span className='bg-overlay-30 text-white px-2 rounded-md absolute bottom-2 left-1'>{`${images?.length} ảnh`}</span>
             <span 
             className='text-white rounded-md absolute bottom-2 right-5'
             onMouseEnter={()=>setisHoverHeart(true)}
@@ -43,7 +43,7 @@ const Item = ({images,address,attributes,description,star,title,user,id}) => {
                 to={`chi-tiet/${fomatVietnameseToString(title)}/${id}`}  
                 className=' text-red-600 font-medium cursor-pointer'
                 >
-                    {handleStar(star).length > 0 && handleStar(star).map((star,number) => {
+                    {handleStar(star)?.length > 0 && handleStar(star).map((star,number) => {
                         return (
                             <span key={number}> {star} </span>
                         )

@@ -3,15 +3,16 @@ import {Overview,Address,Loading,Button} from '../../components'
 import icons from "../../ultils/icons";
 import { apiUploadImages } from "../../services";
 import { getCodes,getCodesArea } from "../../ultils/CommonFunction/getCodes";
-
+import { apiCreatePost } from "../../services";
+import Swal from 'sweetalert2'
 import { useSelector } from "react-redux";
 
 
 const {ImCamera,ImBin } = icons;
 
 const CreatePost = () => {
-  const {prices,areas} = useSelector(state => state.app);
-  
+  const {prices,areas , categories, province} = useSelector(state => state.app);
+  const {currentData} = useSelector(state => state.user);
 
   const [isLoading, setIsLoading] = useState(false)
   const [payload, setPayload] = useState({
@@ -63,19 +64,44 @@ const CreatePost = () => {
     }
     
     
-  const handleSumbit = ()=>{      
-    let priceCodeArr = getCodes(+payload.priceNumber,prices,1,15);
+  const handleSumbit = async ()=>{      
+    let priceCodeArr = getCodes(+payload.priceNumber/Math.pow(10,6),prices,1,15);
     let getPriceCode = priceCodeArr[priceCodeArr.length -1 ]?.code;
-
     let areaCodeArr = getCodesArea(+payload.areaNumber,areas,0,90);
     let getAreaCode = areaCodeArr[0]?.code;
 
-    setPayload(prev => ({
-      ...prev,
+    const finalPayload = {
+      ...payload,
       priceCode : getPriceCode ? getPriceCode : '',
-      areaCode : getAreaCode ? getAreaCode : ''
-    }))
-    console.log(payload)
+      areaCode : getAreaCode ? getAreaCode : '',
+      priceNumber : +payload.priceNumber/Math.pow(10,6),
+      target : payload.target ? payload.target : 'Tất cả',
+      userId : currentData?.id,
+      label : `${categories?.find(item => item.code === payload?.categoryCode)?.value} ${payload?.address?.split(',')[0]}`
+    }
+
+    const response = await apiCreatePost(finalPayload);
+    console.log(response)
+    if(response?.data?.err === 0 ){
+      Swal.fire('Thành công','Đã thêm bài đăng mới','success').then(()=>{
+        setPayload({
+          categoryCode : '',
+          title : '',
+          priceNumber: '',
+          areaNumber : '',
+          images : '',
+          address : '',
+          priceCode: '',
+          areaCode :' ',
+          description: '',
+          target : '',
+          province:''
+        })
+        setImagesPreview([])
+      })
+    }else{
+      Swal.fire('Oops!','Có lỗi gì đó','error');
+    }
   }
 
   return (
@@ -128,7 +154,10 @@ const CreatePost = () => {
           </div>
         </div>
         <div className="border border-red-600 w-1/3 flex-none py-4">
-          map kk
+          Google map
+          <div>
+            Continue...
+          </div>
         </div>
       </div>
     </div>
