@@ -7,9 +7,8 @@ import chothuecanho from "../../data/chothuecanho.json";
 import chothuematbang from "../../data/chothuematbang.json";
 import chothuphongtro from "../../data/chothuephongtro.json";
 import nhachothue from "../../data/nhachothue.json";
-import { where } from "sequelize";
 import { dataArea, dataPrice } from "../ultis/data";
-import { getNumberFromString } from "../ultis/common";
+import { getNumberFromString,getNumberFromStringV2 } from "../ultis/common";
 
 require("dotenv").config();
 
@@ -91,6 +90,8 @@ export const insertServices = () =>
               (price) => price.max > currentPrice && price.min <= currentPrice
             )?.code,
             provinceCode,
+            priceNumber: getNumberFromStringV2(item?.header?.attributes?.price),
+            areaNumber: getNumberFromStringV2(item?.header?.attributes?.acreage)
           });
 
           await db.Attribute.create({
