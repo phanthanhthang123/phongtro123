@@ -128,7 +128,7 @@ const CreatePost = () => {
           </div>
         </div>
         <div className="border border-red-600 w-1/3 flex-none py-4">
-          map
+          map kk
         </div>
       </div>
     </div>
