@@ -25,7 +25,7 @@ const Login = () => {
     let fiels = Object.entries(payload);
     fiels.forEach((item) => {
       if (item[1] === "") {
-        setInvalidFeilds((prev) => [
+        setInvalidFeilds((prev) => [ 
           ...prev,
           {
             name: item[0],
@@ -93,7 +93,7 @@ const Login = () => {
           label={"SỐ ĐIỆN THOẠI"}
           value={payload.phone}
           setValue={setPayload}
-          keyPayload={"phone"}
+          keyPayload={"phone"}  
           placeholder={"Ví dụ : 0967987730"}
         />
         <InputFrom

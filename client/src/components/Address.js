@@ -1,13 +1,44 @@
 import React,{useEffect,useState,memo} from 'react'
 import {Select,InputReadOnly} from './index'
 import { apiGetPublicProvinces,apiGetPublicDistrict } from '../services'
+import { useSelector } from 'react-redux'
 
-const Address = ({setPayload}) => {
+const Address = ({setPayload,isEdit=false,statusAddress,setStatusAddress}) => {
+
+  const {dataEdit} = useSelector(state => state.post);
   
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [province, setProvince] = useState('');
   const [district, setDistrict] = useState('');
+
+  useEffect(()=>{
+    if(statusAddress){
+      setProvince('');
+      setDistrict('');
+      setStatusAddress(false);
+    }
+  },[statusAddress])
+
+  useEffect(() => {
+    if (dataEdit && isEdit) {
+      let addressArr = dataEdit?.address?.split(',');
+      if (addressArr && addressArr.length > 0) {
+        let foundProvince = provinces && provinces.length > 0 && provinces.find(item => item?.province_name === addressArr[addressArr.length - 1]?.trim());
+        setProvince(foundProvince ? foundProvince.province_id : '');
+      }
+    }
+  }, [provinces, dataEdit]);
+  
+  useEffect(() => {
+    if (dataEdit && isEdit) {
+      let addressArr = dataEdit?.address?.split(',');
+      if (addressArr && addressArr.length > 1) {
+        let foundDistrict = districts && districts.length > 0 && districts.find(item => item?.district_name === addressArr[addressArr.length - 2]?.trim());
+        setDistrict(foundDistrict ? foundDistrict.district_id : '');
+      }
+    }
+  }, [districts, dataEdit]);
   
   useEffect(()=>{
     const fetchPublicProvinces = async()=>{

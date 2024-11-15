@@ -3,33 +3,66 @@ import {Overview,Address,Loading,Button} from '../../components'
 import icons from "../../ultils/icons";
 import { apiUploadImages } from "../../services";
 import { getCodes,getCodesArea } from "../../ultils/CommonFunction/getCodes";
-import { apiCreatePost } from "../../services";
+import { apiCreatePost,apiUpdatePost } from "../../services";
 import Swal from 'sweetalert2'
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import * as action from '../../store/actions'
 
 const {ImCamera,ImBin } = icons;
 
-const CreatePost = () => {
-  const {prices,areas , categories, province} = useSelector(state => state.app);
+const CreatePost = ({isEdit=false,setIsEdit}) => {
+  const dispatch = useDispatch();
+  const {prices,areas , categories} = useSelector(state => state.app);
   const {currentData} = useSelector(state => state.user);
-
+  const {dataEdit} = useSelector(state => state.post);
   const [isLoading, setIsLoading] = useState(false)
-  const [payload, setPayload] = useState({
-    categoryCode : '',
-    title : '',
-    priceNumber: '',
-    areaNumber : '',
-    images : '',
-    address : '',
-    priceCode: '',
-    areaCode :' ',
-    description: '',
-    target : '',
-    province:''
+  const [statusAddress, setStatusAddress] = useState(false)
+
+  const [payload, setPayload] = useState(()=>{
+    let initData = isEdit ? {
+      categoryCode:  dataEdit?.categoryCode,
+      title:  dataEdit?.title,
+      priceNumber: ( dataEdit?.priceNumber)*Math.pow(10,6),
+      areaNumber :  dataEdit?.areaNumber ,
+      images : dataEdit?.images?.image ? JSON.parse(dataEdit?.images?.image) : '',
+      address :  dataEdit?.address ,
+      priceCode:  dataEdit?.priceCode,
+      areaCode : dataEdit?.areaCode ,
+      description: dataEdit?.description ? JSON.parse(dataEdit?.description) : '',
+      target :  dataEdit?.overviews?.target ,
+      province: dataEdit?.province  
+    } : {
+      categoryCode : '',
+      title : '',
+      priceNumber : '',
+      areaNumber : '',
+      images : '',
+      address : '',
+      priceCode : '',
+      areaCode : '',
+      description : '',
+      target : '',
+      province : '',
+    }
+    return initData;
+  })
+  // console.log(payload)
+
+  const [imagesPreview, setImagesPreview] = useState(()=>{
+      if(isEdit && dataEdit){
+        let srcImages = dataEdit?.images?.image
+        srcImages = JSON.parse(srcImages)?.filter(item => item !=='')
+        if(srcImages?.length > 0){
+          return srcImages
+        }
+      }else{
+        return []
+      }
   })
 
-  const [imagesPreview, setImagesPreview] = useState([])
+
   const handleFiles = async (e)=>{
       e.stopPropagation();
       setIsLoading(true)
@@ -66,7 +99,7 @@ const CreatePost = () => {
     
   const handleSumbit = async ()=>{      
     let priceCodeArr = getCodes(+payload.priceNumber/Math.pow(10,6),prices,1,15);
-    let getPriceCode = priceCodeArr[priceCodeArr.length -1 ]?.code;
+    let getPriceCode = priceCodeArr[priceCodeArr?.length -1 ]?.code;
     let areaCodeArr = getCodesArea(+payload.areaNumber,areas,0,90);
     let getAreaCode = areaCodeArr[0]?.code;
 
@@ -80,9 +113,20 @@ const CreatePost = () => {
       label : `${categories?.find(item => item.code === payload?.categoryCode)?.value} ${payload?.address?.split(',')[0]}`
     }
 
-    const response = await apiCreatePost(finalPayload);
-    console.log(response)
-    if(response?.data?.err === 0 ){
+    
+    if(dataEdit) {
+      // console.log(dataEdit)
+      finalPayload.postId = dataEdit?.id;
+      finalPayload.attributesId = dataEdit?.attributesId;
+      finalPayload.imagesId = dataEdit?.imagesId;
+      finalPayload.overviewId = dataEdit?.overviewId;
+    }
+    // console.log(dataEdit)
+    // console.log(finalPayload)
+    const response = isEdit ? await apiUpdatePost(finalPayload): await apiCreatePost(finalPayload);
+    // console.log(response)
+
+    if(response?.data?.err === 0 && !isEdit ){
       Swal.fire('Thành công','Đã thêm bài đăng mới','success').then(()=>{
         setPayload({
           categoryCode : '',
@@ -98,6 +142,16 @@ const CreatePost = () => {
           province:''
         })
         setImagesPreview([])
+        setStatusAddress(true)
+      })
+    }else{
+      Swal.fire('Oops!','Có lỗi gì đó','error');
+    }
+
+    if(response?.data?.err === 0 && isEdit ){
+      Swal.fire('Thành công','Đã cập nhật bài đăng thành công','success').then(()=>{
+        dispatch(action.getPostLimitAdmin())
+        setIsEdit(false);
       })
     }else{
       Swal.fire('Oops!','Có lỗi gì đó','error');
@@ -106,10 +160,10 @@ const CreatePost = () => {
 
   return (
     <div className="px-6">
-      <h1 className="text-3xl font-medium border-b border-b-gray-200 py-4">Đăng tin mới</h1>
+      <h1 className="text-3xl font-medium border-b border-b-gray-200 py-4">{isEdit ? 'Chỉnh sửa tin đăng' : 'Đăng tin mới'}</h1>
       <div className="flex gap-4">
-        <div className="py-4 border border-red-600 flex flex-col gap-8 flex-auto">
-          <Address payload={payload} setPayload={setPayload}/>
+        <div className="py-4 flex flex-col gap-8 flex-auto">
+          <Address payload={payload} isEdit={isEdit} setPayload={setPayload} statusAddress={statusAddress} setStatusAddress={setStatusAddress}/>
           <Overview payload={payload} setPayload={setPayload}/>
           <div className='w-full mb-6'>
               <h2 className='font-semibold text-xl py-4'>Hình ảnh</h2>
@@ -149,7 +203,7 @@ const CreatePost = () => {
                 }
               </div>
           </div>
-          <Button underline='underline' onClick={handleSumbit} text='Tạo mới' py='py-2' fontBold='font-bold' bgColor='bg-green-600' textColor='text-white' className='flex items-center justify-center' />
+          <Button underline='underline' onClick={handleSumbit} text ={isEdit ?'Cập nhật bài đăng':'Tạo mới bài đăng'} py='py-2' fontBold='font-bold' bgColor='bg-green-600' textColor='text-white' className='flex items-center justify-center' />
           <div className="h-[500px]">
           </div>
         </div>
@@ -158,6 +212,7 @@ const CreatePost = () => {
           <div>
             Continue...
           </div>
+          <Loading/>
         </div>
       </div>
     </div>

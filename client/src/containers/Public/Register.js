@@ -86,7 +86,6 @@ const Register = () => {
     }
   };
 
-  console.log(invalidFeilds);
   return (
     <div className="bg-white w-[600px] mt-4 p-[30px] pb-[100px] rounded-md shadow-sm">
       <h3 className="font-semibold text-2xl mb-3">Đăng ký tài khoản</h3>

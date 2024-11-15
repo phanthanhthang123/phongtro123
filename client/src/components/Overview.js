@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const targets = [
   {
     code : 'Tất cả',
-    value : 'Nam hoặc Nũ'
+    value : 'Nam hoặc Nữ'
   },
   {
     code : 'Nam',
@@ -20,6 +20,8 @@ const targets = [
 const Overview = ({payload,setPayload}) => {
   const {categories} = useSelector(state => state.app)
   const {currentData} = useSelector(state => state.user)
+  const {dataEdit} = useSelector(state => state.post)
+  // console.log(dataEdit)
 
   return (
     <div className='flex flex-col gap-2 w-full'>

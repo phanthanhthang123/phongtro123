@@ -37,7 +37,7 @@ function App() {
           <Route path={'chi-tiet/*'} element={<DetailPost/>}/>
         </Route>
         <Route path={path.SYSTEM} element={<System/>}>
-          <Route path={path.CREATE_POST} element={<CreatePost/>}/>
+          <Route path={path.CREATE_POST} element={<CreatePost />}/>
           <Route path={path.MANAGE_POST} element={<ManagePost/>}/>
         </Route>
       </Routes>

@@ -97,3 +97,17 @@ export const getPostLimitAdmin = ()=> async (dispatch) => {
         })
     }
 }
+
+export const editData = (dataEdit) => {
+    try {
+        return {
+            type : actionTypes.EDIT_DATA_POST,
+            dataEdit : dataEdit
+        }
+    } catch (error) {
+        return {
+            type : actionTypes.EDIT_DATA_POST,
+            dataEdit: {}
+        }
+    }
+}

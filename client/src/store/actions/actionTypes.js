@@ -11,6 +11,8 @@ const actionTypes ={
     GET_POST_LIMIT: "GET_POST_LIMIT",
     GET_POST_ADMIN: "GET_POST_ADMIN",
     GET_NEW_POST: "GET_NEW_POST",
+    EDIT_DATA_POST: "EDIT_DATA_POST",
+
 
     GET_CATEGORIES : "GET_CATEGORIES",
     GET_PRICES : "GET_PRICES",
@@ -19,6 +21,8 @@ const actionTypes ={
 
     //USER
     GET_CURRENT : 'GET_CURRENT', 
+
+
 }
 
 export default actionTypes
