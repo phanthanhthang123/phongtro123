@@ -77,6 +77,11 @@ const Login = () => {
       dispatch(actions.login(payload));
     }
   };
+  const handleKeyDown = (e)=>{
+    if(e.key === 'Enter'){
+      handleSumbit();
+    }
+  }
 
   const [payload, setPayload] = useState({
     phone: "",
@@ -95,6 +100,7 @@ const Login = () => {
           setValue={setPayload}
           keyPayload={"phone"}  
           placeholder={"Ví dụ : 0967987730"}
+          onKeyDown={handleKeyDown}
         />
         <InputFrom
           invalidFeilds={invalidFeilds}
@@ -105,6 +111,8 @@ const Login = () => {
           type={"password"}
           keyPayload={"password"}
           placeholder={"Ví dụ : thang@123"}
+          onKeyDown={handleKeyDown}
+
         />
         <Button
           text="Đăng nhập"

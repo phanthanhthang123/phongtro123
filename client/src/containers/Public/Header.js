@@ -121,6 +121,7 @@ const Header = () => {
             bgColor="bg-secondary2"
             IcAfter={CiCirclePlus}
             onClick={goCreatePost}
+            underline='underline'
           />
         </div>
       </div>

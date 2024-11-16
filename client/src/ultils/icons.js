@@ -15,6 +15,8 @@ import { PiGarageFill } from "react-icons/pi";
 import { ImCamera } from "react-icons/im";
 import { ImBin } from "react-icons/im";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { AiOutlineFolderOpen } from "react-icons/ai";
+import { FcOpenedFolder } from "react-icons/fc";
 const icons = {
   CiCirclePlus,
   GrNext,
@@ -43,7 +45,9 @@ const icons = {
   PiGarageFill,
   ImCamera,
   ImBin ,
-  RiDeleteBin6Line
+  RiDeleteBin6Line,
+  AiOutlineFolderOpen,
+  FcOpenedFolder
 };
 
 export default icons;

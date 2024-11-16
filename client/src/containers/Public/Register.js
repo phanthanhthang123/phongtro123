@@ -76,15 +76,16 @@ const Register = () => {
   };
 
   const handleSumbit = async () => {
-    // console.log(payload)
-    // const response = await apiRegister(payload);
-    // console.log(response);
     let invalids = validate(payload);
-    // console.log(invalids)
     if (invalids === 0) {
       dispatch(actions.register(payload));
     }
   };
+  const handleKeyDown = (e)=>{
+    if(e.key === 'Enter'){
+      handleSumbit();
+    }
+  }
 
   return (
     <div className="bg-white w-[600px] mt-4 p-[30px] pb-[100px] rounded-md shadow-sm">
@@ -99,6 +100,7 @@ const Register = () => {
           setValue={setPayload}
           keyPayload={"name"}
           placeholder={'Ví dụ: Phan Thanh Thắng'}
+          onKeyDown={handleKeyDown}
         />
         <InputFrom
           type={"phone"}
@@ -109,6 +111,7 @@ const Register = () => {
           setValue={setPayload}
           keyPayload={"phone"}
           placeholder={'Ví dụ : 0967987730'}
+          onKeyDown={handleKeyDown}
         />
         <InputFrom
           type={"password"}
@@ -119,6 +122,7 @@ const Register = () => {
           setValue={setPayload}
           keyPayload={"password"}
           placeholder={"Ví dụ : thang@123"}
+          onKeyDown={handleKeyDown}
         />
         <Button
           text="Đăng kí"

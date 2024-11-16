@@ -48,14 +48,20 @@ const CreatePost = ({isEdit=false,setIsEdit}) => {
     }
     return initData;
   })
-  // console.log(payload)
+  // console.log(dataEdit)
 
   const [imagesPreview, setImagesPreview] = useState(()=>{
       if(isEdit && dataEdit){
         let srcImages = dataEdit?.images?.image
-        srcImages = JSON.parse(srcImages)?.filter(item => item !=='')
-        if(srcImages?.length > 0){
-          return srcImages
+        // console.log(srcImages)
+        if(srcImages === ' "" ') return []
+        else {
+          srcImages = JSON.parse(srcImages) ?  JSON.parse(srcImages)?.filter(item => item !=='') : []
+          if(srcImages?.length > 0){
+            return srcImages
+          }else{
+            return []
+          } 
         }
       }else{
         return []
@@ -81,7 +87,10 @@ const CreatePost = ({isEdit=false,setIsEdit}) => {
           setIsLoading(false);
         }
       }
-      setImagesPreview(prev => [...prev,...images]);
+      setImagesPreview(prev => {
+        if(prev) return[...prev,...images]
+        else return [...images]
+      });
       setPayload(prev => ({
         ...prev,
         images: ([...payload.images,...images])
@@ -125,37 +134,40 @@ const CreatePost = ({isEdit=false,setIsEdit}) => {
     // console.log(finalPayload)
     const response = isEdit ? await apiUpdatePost(finalPayload): await apiCreatePost(finalPayload);
     // console.log(response)
-
-    if(response?.data?.err === 0 && !isEdit ){
-      Swal.fire('Thành công','Đã thêm bài đăng mới','success').then(()=>{
-        setPayload({
-          categoryCode : '',
-          title : '',
-          priceNumber: '',
-          areaNumber : '',
-          images : '',
-          address : '',
-          priceCode: '',
-          areaCode :' ',
-          description: '',
-          target : '',
-          province:''
-        })
-        setImagesPreview([])
-        setStatusAddress(true)
-      })
-    }else{
-      Swal.fire('Oops!','Có lỗi gì đó','error');
+    // console.log(isEdit)
+    if (+response?.data?.err === 0) {
+      if (!isEdit) {
+          Swal.fire('Thành công', 'Đã thêm bài đăng mới', 'success').then(() => {
+              setPayload({
+                  categoryCode: '',
+                  title: '',
+                  priceNumber: '',
+                  areaNumber: '',
+                  images: '',
+                  address: '',
+                  priceCode: '',
+                  areaCode: ' ',
+                  description: '',
+                  target: '',
+                  province: ''
+              });
+              setImagesPreview([]);
+              setStatusAddress(true);
+          });
+      } else {
+          Swal.fire('Thành công', 'Đã cập nhật bài đăng thành công', 'success').then(() => {
+              setIsEdit(false);
+              dispatch(action.getPostLimitAdmin());
+          });
+      }
+    }else {
+      if (!isEdit) {
+          Swal.fire('Oops!', 'Có lỗi gì đó khi thêm bài mới', 'error');
+      } else {
+          Swal.fire('Oops!', 'Có lỗi gì đó khi cập nhật bài đăng', 'error');
+      }
     }
 
-    if(response?.data?.err === 0 && isEdit ){
-      Swal.fire('Thành công','Đã cập nhật bài đăng thành công','success').then(()=>{
-        dispatch(action.getPostLimitAdmin())
-        setIsEdit(false);
-      })
-    }else{
-      Swal.fire('Oops!','Có lỗi gì đó','error');
-    }
   }
 
   return (
@@ -184,7 +196,7 @@ const CreatePost = ({isEdit=false,setIsEdit}) => {
                   </div>}
                 </label>
                 <input onChange={handleFiles} id="file" type="file" multiple hidden/>
-                {imagesPreview.length > 0 && 
+                {imagesPreview?.length > 0 && 
                 <div className="w-full">
                   <h3 className="font-medium py-4">Ảnh đã chọn</h3>
                   <div className="flex gap-4 items-center">

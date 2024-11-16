@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputFrom = ({ label, value, setValue,type, keyPayload, invalidFeilds ,setInvalidFeilds,placeholder}) => {
+const InputFrom = ({ label, value, setValue,type, keyPayload, invalidFeilds ,setInvalidFeilds,placeholder,onKeyDown}) => {
   return (
     <div>
       <label htmlFor={keyPayload} className="text-xs">
@@ -12,6 +12,7 @@ const InputFrom = ({ label, value, setValue,type, keyPayload, invalidFeilds ,set
         className="outline-none bg-[#e8f0fe] p-2 rounded-md w-full"
         placeholder= {placeholder || null}
         value={value}
+        onKeyDown={onKeyDown}
         onChange={(e) =>
           setValue((prev) => ({ ...prev, [keyPayload]: e.target.value }))
         }
