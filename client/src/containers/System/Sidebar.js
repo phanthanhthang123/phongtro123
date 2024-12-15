@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import icons from "../../ultils/icons";
 import * as action from '../../store/actions'
+import { blobToBase64 } from "../../ultils/toBase64";
 
 const activeStyle =
   "pb-2 hover:bg-gray-200 py-2 flex items-center font-bold bg-gray-300 gap-2 rounded-md my-1 cursor-pointer`";
@@ -23,7 +24,7 @@ const Sidebar = () => {
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <img
-            src={anonAvatar}
+            src={currentData?.avatar ? blobToBase64(currentData?.avatar) : anonAvatar}
             alt="avatar"
             className="w-12 h-12 object-cover rounded-full shadow-md border-2 border-white"
           />

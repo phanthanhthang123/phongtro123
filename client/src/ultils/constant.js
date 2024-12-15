@@ -3,7 +3,7 @@ export const path ={
     HOME__PAGE: ':page',
     LOGIN : 'login',
     REGISTER: 'register',
-    CHO_THUE_CAN_HO: '/cho-thue-can-ho',
+    CHO_THUE_CAN_HO: 'cho-thue-can-ho',
     CHO_THUE_MAT_BANG:'cho-thue-mat-bang',
     NHA_CHO_THUE:'nha-cho-thue',
     CHO_THUE_PHONG_TRO:'cho-thue-phong-tro',
@@ -11,7 +11,11 @@ export const path ={
     SEARCH : 'tim-kiem',
     SYSTEM : '/he-thong/*',
     CREATE_POST : 'tao-moi-bai-dang',
-    MANAGE_POST : 'quan-ly-bai-dang'
+    MANAGE_POST : 'quan-ly-bai-dang',
+    EDIT_ACCOUNT: 'sua-thong-tin-ca-nhan',
+    CONTACT : '/lien-he',
+    DETAIL : '/chi-tiet/',
+    DETAIL_ALL: 'chi-tiet/*'
 }
 
 export const text = {

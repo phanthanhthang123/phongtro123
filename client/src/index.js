@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import App from "./App";
 import { PersistGate } from "redux-persist/integration/react"; //dayley chilren viec render UI cho toi khi store duoc update
 import { Provider } from "react-redux";

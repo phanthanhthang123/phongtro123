@@ -30,7 +30,7 @@ const menuSidebar = [
     {
         id : 5,
         text : 'Liên hệ',
-        path : '/he-thong/lien-he',
+        path : '/lien-he',
         icon : <IoChatbubblesOutline/>
     }
 ]

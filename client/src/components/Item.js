@@ -2,6 +2,7 @@ import React,{memo,useState} from 'react'
 import icons from '../ultils/icons';
 import { useNavigate,Link } from 'react-router-dom';
 import { fomatVietnameseToString } from '../ultils/CommonFunction/fomatVietnameseToString';
+import { path } from '../ultils/constant';
 const {IoStar,GoHeartFill,FaRegHeart,BsBookmarkStarFill} = icons;
 const indexs = [0,1,2,3]
 
@@ -20,7 +21,7 @@ const Item = ({images,address,attributes,description,star,title,user,id}) => {
   return (
     <div className='w-full flex border-t border-orange-700 px-2 py-4 bg-[#FFF9F3]'>
         <Link
-        to={`chi-tiet/${fomatVietnameseToString(title)}/${id}`} 
+        to={`${path.DETAIL}${fomatVietnameseToString(title?.replaceAll('/',''))}/${id}`} 
         className='w-2/5 flex flex-wrap gap-[2px] items-start relative cursor-pointer'
         >
            {images?.length > 0 && images?.filter((item,index)=> indexs.some(i => i===index))?.map((i,index) => {
@@ -40,7 +41,7 @@ const Item = ({images,address,attributes,description,star,title,user,id}) => {
         <div className='w-3/5'>
             <div className='w-full flex justify-between gap-4'>
                 <Link  
-                to={`chi-tiet/${fomatVietnameseToString(title)}/${id}`}  
+                to={`${path.DETAIL}${fomatVietnameseToString(title?.replaceAll('/',''))}/${id}`}  
                 className=' text-red-600 font-medium cursor-pointer'
                 >
                     {handleStar(star)?.length > 0 && handleStar(star).map((star,number) => {

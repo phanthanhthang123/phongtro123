@@ -15,10 +15,10 @@ app.use(cors({
 }))
 
 //giúp có thể đọc giữ liệu được gửi lên từ client
-app.use(express.json());
+app.use(express.json({limit : '10mb'}));
 
 //giúp có thể đọc data dạng formdata dưới client gửi lên dưới dạng body  
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true,limit:'10mb'}));
 
 initRouters(app);
 connectDatabase();

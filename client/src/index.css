@@ -66,3 +66,18 @@ input[type='range']::-moz-range-thumb:active{
 input[type='range']::-ms-thumb:active{
     border: solid 1px rgb(124, 124, 238);
 }
+
+
+button.slick-arrow::before{
+    font-size: 50px !important;
+    color: yellow !important;
+}
+.slick-next {
+    right: 40px !important;
+    top: 47% !important;
+}
+.slick-prev{
+    left: 10px !important;
+    z-index: 10;
+    top: 47% !important;
+}

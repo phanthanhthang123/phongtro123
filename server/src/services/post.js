@@ -57,6 +57,38 @@ export const getPostLimitService = (page,query) => new Promise(async (resolve, r
     }
 })
 
+export const getPostLimitService2 = (page,{limitPost,order,...query}) => new Promise(async (resolve, reject) => {
+    try {
+        let offset = (!page || +page <= 1 ) ? 0 : (+page -1);
+        const queries = {...query}
+        const limit = +limitPost ||  +process.env.LIMIT
+        queries.limit = limit
+        if(order) queries.order = [order] 
+        const response = await db.Post.findAndCountAll({
+            where: query,
+            raw : true,
+            nest : true,
+            offset: offset * limit,
+            ...queries,
+            include : [
+                {model: db.Image,as: 'images',attributes :['image']},
+                {model: db.Attribute, as: 'attributes',attributes :['price','acreage','published']},
+                {model: db.User, as: 'user',attributes :['name','zalo','phone']},
+                {model: db.Overview, as: 'overviews'}
+            ],
+            attributes: ['id','title','star','address','description']
+        })
+
+        resolve({
+            err : response ? 0 : 1,
+            msg : response ? 'OK' : 'Getting Pots is failed',
+            response
+        })
+    } catch (error) {
+        reject("get post fail : "+ error);
+    }
+})
+
 
 export const getNewPostService = () => new Promise(async (resolve, reject) => {
     try {
