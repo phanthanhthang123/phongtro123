@@ -219,12 +219,12 @@ const CreatePost = ({isEdit=false,setIsEdit}) => {
           <div className="h-[500px]">
           </div>
         </div>
-        <div className="border border-red-600 w-1/3 flex-none py-4">
-          Google map
+        <div className="border border-blue-500 w-1/3 flex-none py-4 flex flex-col items-center">
+          <div>Google map</div>
           <div>
             Continue...
           </div>
-          <Loading/>
+          <Loading size={30}/>
         </div>
       </div>
     </div>

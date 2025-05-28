@@ -1,5 +1,5 @@
 export const text = {
-  title: "Tại sao lại chọn PhongTro123.com?",
+  title: "Tại sao lại chọn PhongtroPTT",
   description:
     "Chúng tôi biết bạn có rất nhiều lựa chọn, nhưng Phongtro123.com tự hào là trang web đứng top google về các từ khóa: ",
   description2:

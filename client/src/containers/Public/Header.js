@@ -80,7 +80,7 @@ const Header = () => {
               onClick={goRegister}
             />
           </div> }
-          {isLoggedIn && <div className="flex items-center gab-1 relative">
+          {isLoggedIn && <div className="flex items-center gab-1 relative z-50">
             <small>
               <User/>
             </small>

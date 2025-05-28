@@ -17,6 +17,9 @@ import { ImBin } from "react-icons/im";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { FcOpenedFolder } from "react-icons/fc";
+import { FaLocationDot } from "react-icons/fa6";
+import { CiClock1 } from "react-icons/ci";
+
 const icons = {
   CiCirclePlus,
   GrNext,
@@ -47,7 +50,9 @@ const icons = {
   ImBin ,
   RiDeleteBin6Line,
   AiOutlineFolderOpen,
-  FcOpenedFolder
+  FcOpenedFolder,
+  FaLocationDot,
+  CiClock1
 };
 
 export default icons;

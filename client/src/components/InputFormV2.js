@@ -1,12 +1,12 @@
 import React from "react";
 
-const InputFormV2 = ({ label, unit, value, setValue ,name,small}) => {
+const InputFormV2 = ({ label, unit, value, setValue ,name,small,isRow}) => {
   return (
-    <div> 
-      <label htmlFor={name} className="font-semibold text-base py-2">
+    <div className={`flex ${isRow ? isRow  : 'flex-col'}`}> 
+      <label htmlFor={name} className="font-semibold text-base py-2 w-48">
         {label}
       </label>
-      <div className="flex items-center">
+      <div className="flex items-center flex-auto">
         <input
           id={name}
           type="text"
