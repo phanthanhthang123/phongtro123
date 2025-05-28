@@ -44,6 +44,7 @@ const Address = ({setPayload,isEdit=false,statusAddress,setStatusAddress}) => {
     const fetchPublicProvinces = async()=>{
         const respone = await apiGetPublicProvinces();
         if(respone?.status === 200) {
+          // console.log(respone?.data);
             setProvinces(respone?.data?.results);
         }
     }
